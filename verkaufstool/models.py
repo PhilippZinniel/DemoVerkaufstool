@@ -13,4 +13,4 @@ class Schienenabschnitt(models.Model):
     schienenhaerte = models.PositiveIntegerField(blank=True, null=True)
     maximale_geschwindigkeit = models.PositiveIntegerField(blank=True, null=True)
     laenge = models.FloatField(blank=True, null=True)
-    kunde = models.ForeignKey(Kunde, on_delete=models.CASCADE)
+    kunde = models.ForeignKey(Kunde, on_delete=models.CASCADE, related_name='schienenabschnitte')
