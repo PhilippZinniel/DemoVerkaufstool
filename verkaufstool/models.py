@@ -6,6 +6,7 @@ class Kunde(models.Model):
     email = models.EmailField(blank=True, null=True)
     telefon = models.CharField(max_length=20, blank=True, null=True)
     adresse = models.TextField(blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Schienenabschnitt(models.Model):
@@ -14,3 +15,4 @@ class Schienenabschnitt(models.Model):
     maximale_geschwindigkeit = models.PositiveIntegerField(blank=True, null=True)
     laenge = models.FloatField(blank=True, null=True)
     kunde = models.ForeignKey(Kunde, on_delete=models.CASCADE, related_name='schienenabschnitte')
+    updated_at = models.DateTimeField(auto_now=True)
