@@ -1,31 +1,20 @@
-"""
-URL configuration for DemoVerkaufstool project.
+# urls.py
+# Routes HTTP requests to the appropriate view logic, including the API endpoints
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
 from verkaufstool import views
 
+# Registering API endpoints for automatic URL routing using DRF's router
 router = routers.DefaultRouter()
 router.register(r'kunden', views.KundeViewSet)
 router.register(r'schienenabschnitte', views.SchienenabschnittViewSet)
 
+# Defining URL patterns for the project
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('test/', include('verkaufstool.urls')),
-    path('', include(router.urls)),
+    path('admin/', admin.site.urls),  # Django admin interface
+    path('letzte-aenderung/', views.letzte_aenderung, name='letzte_aenderung'),  # Custom endpoint to get the latest update timestamp
+    path('', include(router.urls)),  # Automatically includes registered API viewsets
 ]
